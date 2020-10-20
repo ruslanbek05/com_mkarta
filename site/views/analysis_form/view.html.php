@@ -3,16 +3,17 @@
 defined('_JEXEC') or die('Restricted access');
 
 
-class MkartaViewAnalysis extends JViewLegacy
+class MkartaViewAnalysis_form extends JViewLegacy
 {
-    protected $item;
+    protected $form = null;
+    protected $canDo;
 
     function display($tpl = null)
     {
+        //get the form to display
+        $this->form = $this->get('Form');
 
-        $this->item = $this->get('Item');//getItems
 
-        //var_dump($this->item);
 
         // Display the view
         parent::display($tpl);

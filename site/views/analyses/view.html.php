@@ -5,19 +5,15 @@ defined('_JEXEC') or die('Restricted access');
 
 class MkartaViewAnalyses extends JViewLegacy
 {
+    protected $items;
+    protected $pagination;
 
     function display($tpl = null)
     {
-        // Assign data to the view
-        $this->msg = $this->get('Msg');
+        $this->items = $this->get('Items');//getItems
+        $this->pagination = $this->get('Pagination');//getPagination
 
-        // Check for errors.
-        if (count($errors = $this->get('Errors')))
-        {
-            JLog::add(implode('<br />', $errors), JLog::WARNING, 'jerror');
-
-            return false;
-        }
+        //var_dump($this->items);
 
         // Display the view
         parent::display($tpl);
