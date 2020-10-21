@@ -13,7 +13,7 @@ class MkartaViewAnalysis_form extends JViewLegacy
         //get the form to display
         $this->form = $this->get('Form');
 
-
+        //var_dump($this->form);
 
         // Display the view
         parent::display($tpl);
