@@ -13,9 +13,12 @@ class MkartaViewAnalysis_form extends JViewLegacy
         //get the form to display
         $this->form = $this->get('Form');
 
+        // Get the javascript script file for client-side validation
+        $this->script = $this->get('Script');
+
         //var_dump($this->form);
 
         // Display the view
-        parent::display($tpl);
+        //parent::display($tpl);
     }
 }
