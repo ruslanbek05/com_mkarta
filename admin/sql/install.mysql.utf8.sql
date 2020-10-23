@@ -9,4 +9,4 @@ CREATE TABLE IF NOT EXISTS `#__analyses` (
 `date` datetime,
 `adder_id` int(11),
 PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_unicode_ci;
