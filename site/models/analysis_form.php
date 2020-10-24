@@ -3,24 +3,47 @@
 defined('_JEXEC') or die('Restricted access');
 
 class MkartaModelAnalysis_form extends JModelAdmin {
-/*
-    public function getTable($type = 'Analysis_form', $prefix = 'MkartaTable', $config = array())
+
+    protected $analysis;
+
+    public function getTable($type = 'Analysis', $prefix = 'MkartaTable', $config = array())
     {
         return JTable::getInstance($type, $prefix, $config);
     }
-*/
-/*
-    protected function loadFormData()
-    {
-        // Check the session for previously entered form data.
-        $data = JFactory::getApplication()->getUserState(
-            'com_mkarta.edit.analysis.data',
-            array()
-        );
 
-        return $data;
+    public function getAnalysis($id=1){
+
+        if (!is_array($this->analysis))
+        {
+            $this->analysis = array();
+        }
+
+        if (!isset($this->analysis[$id]))
+        {
+            // Request the selected id
+            $jinput = JFactory::getApplication()->input;
+            $id     = $jinput->get('id', 0, 'INT');
+
+            // Get a TableHelloWorld instance
+            $table = $this->getTable();
+
+            //var_dump($table);die;
+
+            // Load the message
+            $table->load($id);
+
+            //var_dump($table);die;
+
+            // Assign the message
+            //$this->messages[$id] = $table->greeting;
+        }
+
+        //return $this->messages[$id];
+        return $table;
+
     }
-*/
+
+
 
     public function getForm($data = array(), $loadData = true)
     {
