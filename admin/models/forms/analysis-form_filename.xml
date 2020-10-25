@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form
+        addrulepath="/administrator/components/com_helloworld/models/rules"
+>
+    <fieldset
+            name="analysis_fieldset_name"
+            label="COM_MKARTA_ANALYSIS_FORM_DETAILS"
+    >
+        <field
+                name="id"
+                type="hidden"
+        />
+        <field
+                name="created_by"
+                type="text"
+                label="COM_MKARTA_ANALYSIS_CREATED_BY_FIELD_LABEL"
+                description="COM_MKARTA_ANALYSIS_CREATED_BY_FIELD_DESC"
+                hint="COM_MKARTA_ANALYSIS_CREATED_BY_FIELD_HINT"
+                default=""
+        />
+
+        <field
+                name="explanation"
+                type="textarea"
+                rows="5"
+                cols="80"
+                label="COM_MKARTA_ANALYSIS_EXPLANATION_LABEL"
+                description="COM_MKARTA_ANALYSIS_EXPLANATION_DESC"
+                hint="COM_MKARTA_ANALYSIS_EXPLANATION_FIELD_HINT"
+                required="true"
+        >
+        </field>
+
+        <field
+                name="type_of_analysis"
+                type="text"
+                label="COM_MKARTA_ANALYSIS_TYPE_OF_ANALYSIS_FIELD_LABEL"
+                description="COM_MKARTA_ANALYSIS_TYPE_OF_ANALYSIS_FIELD_DESC"
+                hint="COM_MKARTA_ANALYSIS_TYPE_OF_ANALYSIS_FIELD_HINT"
+                default=""
+        />
+
+        <field
+                name="image"
+                type="text"
+                label="COM_MKARTA_ANALYSIS_IMAGE_FIELD_LABEL"
+                description="COM_MKARTA_ANALYSIS_IMAGE_FIELD_DESC"
+                hint="COM_MKARTA_ANALYSIS_IMAGE_FIELD_HINT"
+                default=""
+        />
+
+        <field
+                name="date"
+                type="text"
+                label="COM_MKARTA_ANALYSIS_DATE_FIELD_LABEL"
+                description="COM_MKARTA_ANALYSIS_DATE_FIELD_DESC"
+                hint="COM_MKARTA_ANALYSIS_IMAGE_DATE_FIELD_HINT"
+                default=""
+        />
+
+        <field
+                name="adder_id"
+                type="text"
+                label="COM_MKARTA_ANALYSIS_ADDER_ID_FIELD_LABEL"
+                description="COM_MKARTA_ANALYSIS_ADDER_ID_FIELD_DESC"
+                hint="COM_MKARTA_ANALYSIS_IMAGE_ADDER_ID_FIELD_HINT"
+                default=""
+        />
+
+
+    </fieldset>
+</form>

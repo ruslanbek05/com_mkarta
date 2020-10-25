@@ -19,7 +19,20 @@ class MkartaViewAnalyses extends JViewLegacy
             return false;
         }
 
+        // Set the toolbar
+        $this->addToolBar();
+
         // Display the template
         parent::display($tpl);
     }
+
+    protected function addToolBar()
+    {
+        JToolbarHelper::title(JText::_('COM_MKARTA_MANAGER_ANALYSES'));
+        JToolbarHelper::addNew('analysis_form.add');
+        JToolbarHelper::editList('analysis_form.edit');
+        JToolbarHelper::deleteList('', 'analyses.delete');
+    }
+
+
 }
