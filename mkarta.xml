@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.0" method="upgrade">
 
-    <name>mkarta</name>
+    <name>COM_MKARTA</name>
     <!-- The following elements are optional and free of formatting constraints -->
     <creationDate>October 2020</creationDate>
     <author>Ruslan Kadirov</author>
@@ -51,6 +51,10 @@
             <!-- SQL files section -->
             <folder>sql</folder>
         </files>
+		<languages folder="admin/languages">
+			<language tag="en-GB">en-GB/en-GB.com_mkarta.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_mkarta.sys.ini</language>
+		</languages>
     </administration>
 
 </extension>
