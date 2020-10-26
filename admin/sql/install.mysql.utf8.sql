@@ -8,5 +8,6 @@ CREATE TABLE IF NOT EXISTS `#__analyses` (
 `image` text,
 `date` datetime,
 `adder_id` int(11),
+`published` TINYINT(4) NOT NULL DEFAULT '1',
 PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_unicode_ci;

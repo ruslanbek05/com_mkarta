@@ -1,8 +1,27 @@
 <?php
 // No direct access to this file
 defined('_JEXEC') or die('Restricted Access');
+
+JHtml::_('formbehavior.chosen', 'select');
+
+$listOrder     = $this->escape($this->filter_order);
+$listDirn      = $this->escape($this->filter_order_Dir);
+
 ?>
 <form action="index.php?option=com_mkarta&view=analyses" method="post" id="adminForm" name="adminForm">
+
+    <div class="row-fluid">
+        <div class="span6">
+            <?php echo JText::_('COM_MKARTA_ANALYSES_FILTER'); ?>
+            <?php
+            echo JLayoutHelper::render(
+                'joomla.searchtools.default',
+                array('view' => $this)
+            );
+            ?>
+        </div>
+    </div>
+
     <table class="table table-striped table-hover">
         <thead>
         <tr>
@@ -17,7 +36,8 @@ defined('_JEXEC') or die('Restricted Access');
                 <?php echo JText::_('COM_MKARTA_ANALYSIS_EXPLANATION_LABEL'); ?>
             </th>
             <th width="10%">
-                <?php echo JText::_('COM_MKARTA_ANALYSIS_TYPE_OF_ANALYSIS_FIELD_LABEL'); ?>
+                <?php //echo JText::_('COM_MKARTA_ANALYSIS_TYPE_OF_ANALYSIS_FIELD_LABEL'); ?>
+                <?php echo JHtml::_('grid.sort', 'COM_MKARTA_ANALYSIS_TYPE_OF_ANALYSIS_FIELD_LABEL', 'type_of_analysis', $listDirn, $listOrder); ?>
             </th>
             <th width="38%">
                 <?php echo JText::_('COM_MKARTA_ANALYSIS_IMAGE_FIELD_LABEL'); ?>
@@ -29,10 +49,12 @@ defined('_JEXEC') or die('Restricted Access');
                 <?php echo JText::_('COM_MKARTA_ANALYSIS_ADDER_ID_FIELD_LABEL'); ?>
             </th>
             <th width="5%">
-                <?php echo JText::_('COM_MKARTA_PUBLISHED'); ?>
+                <?php //echo JText::_('COM_MKARTA_PUBLISHED'); ?>
+                <?php echo JHtml::_('grid.sort', 'COM_MKARTA_PUBLISHED', 'published', $listDirn, $listOrder); ?>
             </th>
             <th width="2%">
-                <?php echo JText::_('COM_MKARTA_ANALYSIS_ID_FIELD_LABEL'); ?>
+                <?php //echo JText::_('COM_MKARTA_ANALYSIS_ID_FIELD_LABEL'); ?>
+                <?php echo JHtml::_('grid.sort', 'COM_MKARTA_ANALYSIS_ID_FIELD_LABEL', 'id', $listDirn, $listOrder); ?>
             </th>
         </tr>
         </thead>
@@ -90,6 +112,10 @@ defined('_JEXEC') or die('Restricted Access');
 
     <input type="hidden" name="task" value=""/>
     <input type="hidden" name="boxchecked" value="0"/>
+
+    <input type="hidden" name="filter_order" value="<?php echo $listOrder; ?>"/>
+    <input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>"/>
+
     <?php echo JHtml::_('form.token'); ?>
 
 </form>
