@@ -72,4 +72,14 @@ class MkartaModelAnalysis_form extends JModelAdmin
 
         return $data;
     }
+
+    /**
+     * Method to get the script that have to be included on the form
+     *
+     * @return string	Script files
+     */
+    public function getScript()
+    {
+        return 'administrator/components/com_mkarta/models/forms/analysis_form.js';
+    }
 }

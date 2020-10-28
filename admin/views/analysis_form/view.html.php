@@ -12,6 +12,7 @@ class MkartaViewAnalysis_form extends JViewLegacy
         // Get the Data
         $this->form = $this->get('Form');
         $this->item = $this->get('Item');
+        $this->script = $this->get('Script');
 
         // Check for errors.
         if (count($errors = $this->get('Errors')))
@@ -60,10 +61,21 @@ class MkartaViewAnalysis_form extends JViewLegacy
 
     protected function setDocument()
     {
+
+        JHtml::_('behavior.framework');
+        JHtml::_('behavior.formvalidator');
+
         $isNew = ($this->item->id < 1);
         $document = JFactory::getDocument();
         $document->setTitle($isNew ? JText::_('COM_MKARTA_ANALYSIS_CREATING') :
             JText::_('COM_MKARTA_ANALYSIS_EDITING'));
+
+        $document->addScript(JURI::root() . $this->script);
+        $document->addScript(JURI::root() . "/administrator/components/com_mkarta"
+            . "/views/analysis_form/submitbutton.js");
+        JText::script('COM_MKARTA_ANALYSIS_ERROR_UNACCEPTABLE');
+
+
     }
 
 

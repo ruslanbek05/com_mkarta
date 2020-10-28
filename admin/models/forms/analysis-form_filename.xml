@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form
-        addrulepath="/administrator/components/com_helloworld/models/rules"
+        addrulepath="/administrator/components/com_mkarta/models/rules"
 >
     <fieldset
             name="analysis_fieldset_name"
@@ -38,6 +38,9 @@
                 description="COM_MKARTA_ANALYSIS_TYPE_OF_ANALYSIS_FIELD_DESC"
                 hint="COM_MKARTA_ANALYSIS_TYPE_OF_ANALYSIS_FIELD_HINT"
                 default=""
+                class="inputbox validate-type_of_analysis"
+                validate="type_of_analysis"
+                required="true"
         />
 
         <field
