@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form
-        addrulepath="/administrator/components/com_mkarta/models/rules"
+
 >
     <fieldset
             name="analysis_fieldset_name"
+            addrulepath="/administrator/components/com_mkarta/models/rules"
             label="COM_MKARTA_ANALYSIS_FORM_DETAILS"
     >
         <field
@@ -39,27 +40,16 @@
                 hint="COM_MKARTA_ANALYSIS_TYPE_OF_ANALYSIS_FIELD_HINT"
                 default=""
                 class="inputbox validate-type_of_analysis"
-                validate="type_of_analysis"
+                validate="typeofanalysis"
                 required="true"
+                message="Your custom validation messsage goes here"
         />
 
-        <field
-                name="image"
-                type="text"
-                label="COM_MKARTA_ANALYSIS_IMAGE_FIELD_LABEL"
-                description="COM_MKARTA_ANALYSIS_IMAGE_FIELD_DESC"
-                hint="COM_MKARTA_ANALYSIS_IMAGE_FIELD_HINT"
-                default=""
-        />
+        <field name="image" type="file" label="COM_MKARTA_ANALYSIS_IMAGE_FIELD_LABEL" description="COM_MKARTA_ANALYSIS_IMAGE_FIELD_DESC" size="10" accept="image/*" />
 
-        <field
-                name="date"
-                type="text"
-                label="COM_MKARTA_ANALYSIS_DATE_FIELD_LABEL"
-                description="COM_MKARTA_ANALYSIS_DATE_FIELD_DESC"
-                hint="COM_MKARTA_ANALYSIS_IMAGE_DATE_FIELD_HINT"
-                default=""
-        />
+        <field name="date" type="calendar" default="NOW" label="COM_MKARTA_ANALYSIS_DATE_FIELD_LABEL" description="COM_MKARTA_ANALYSIS_DATE_FIELD_DESC"
+               class="input-small" required="true" filter="user_utc"
+               showtime="false" todaybutton="true" filltable="false" translateformat="true"/>
 
         <field
                 name="adder_id"

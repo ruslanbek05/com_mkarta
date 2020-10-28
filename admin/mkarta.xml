@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.0" method="upgrade">
 
-    <name>mkarta</name>
+    <name>COM_MKARTA</name>
     <!-- The following elements are optional and free of formatting constraints -->
     <creationDate>October 2020</creationDate>
     <author>Ruslan Kadirov</author>
@@ -13,6 +13,17 @@
     <version>0.0.4</version>
     <!-- The description is optional and defaults to the name -->
     <description>Description of the mkarta component ...</description>
+	
+	<install> <!-- Runs on install -->
+		<sql>
+			<file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+		</sql>
+	</install>
+	<uninstall> <!-- Runs on uninstall -->
+		<sql>
+			<file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+		</sql>
+	</uninstall>
 
     <update> <!-- Runs on update; New since J2.5 -->
         <schemas>
@@ -30,11 +41,22 @@
         <filename>controller.php</filename>
         <folder>views</folder>
         <folder>models</folder>
+        <folder>languages</folder>
+        <folder>controllers</folder>
     </files>
+
+    <languages folder="site/languages">
+        <language tag="en-GB">en-GB/en-GB.com_mkarta.ini</language>
+    </languages>
+	
+	<media destination="com_mkarta" folder="media">
+		<filename>index.html</filename>
+		<folder>images</folder>
+	</media>
 
     <administration>
         <!-- Administration Menu Section -->
-        <menu link='index.php?option=com_mkarta'>mkarta!</menu>
+        <menu link='index.php?option=com_mkarta' img="../media/com_mkarta/images/Tux-16x16.png">COM_MKARTA_MENU</menu>
         <!-- Administration Main File Copy Section -->
         <!-- Note the folder attribute: This attribute describes the folder
             to copy FROM in the package to install therefore files copied
@@ -43,9 +65,19 @@
             <!-- Admin Main File Copy Section -->
             <filename>index.html</filename>
             <filename>mkarta.php</filename>
+            <filename>controller.php</filename>
             <!-- SQL files section -->
+            <folder>controllers</folder>
+            <folder>languages</folder>
+            <folder>models</folder>
             <folder>sql</folder>
+            <folder>tables</folder>
+            <folder>views</folder>
         </files>
+		<languages folder="admin/languages">
+			<language tag="en-GB">en-GB/en-GB.com_mkarta.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_mkarta.sys.ini</language>
+		</languages>
     </administration>
 
 </extension>

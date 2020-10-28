@@ -4,7 +4,7 @@ defined('_JEXEC') or die('Restricted access');
 //JHtml::_('behavior.formvalidator');
 ?>
 <form action="<?php echo JRoute::_('index.php?option=com_mkarta&layout=edit&id=' . (int) $this->item->id); ?>"
-      method="post" name="adminForm" id="adminForm" class="form-validate">
+      method="post" name="adminForm" id="adminForm" class="form-validate" enctype="multipart/form-data">
     <div class="form-horizontal">
         <fieldset class="adminform">
             <legend><?php echo JText::_('COM_MKARTA_ANALYSIS_FORM_DETAILS'); ?></legend>
