@@ -6,6 +6,9 @@ defined('_JEXEC') or die('Restricted access');
 $document = JFactory::getDocument();
 $document->addStyleDeclaration('.icon-mkarta {background-image: url(../media/com_mkarta/images/Tux-16x16.png);}');
 
+// Require helper file
+JLoader::register('MkartaHelper', JPATH_COMPONENT . '/helpers/mkarta.php');
+
 // Get an instance of the controller prefixed by HelloWorld
 $controller = JControllerLegacy::getInstance('Mkarta');
 

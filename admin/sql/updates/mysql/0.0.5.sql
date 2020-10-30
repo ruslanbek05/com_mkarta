@@ -1,0 +1,1 @@
+ALTER TABLE `#__analyses` ADD `catid` int(11) NOT NULL DEFAULT '0';

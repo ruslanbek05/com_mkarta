@@ -29,6 +29,9 @@ class MkartaViewAnalyses extends JViewLegacy
 
             return false;
         }
+		
+		// Set the submenu
+		MkartaHelper::addSubmenu('mkarta');
 
         // Set the toolbar and number of found items
         $this->addToolBar();

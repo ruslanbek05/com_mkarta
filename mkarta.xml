@@ -66,6 +66,7 @@
             <filename>index.html</filename>
             <filename>mkarta.php</filename>
             <filename>controller.php</filename>
+			<filename>access.xml</filename>
             <!-- SQL files section -->
             <folder>controllers</folder>
             <folder>languages</folder>
@@ -73,6 +74,9 @@
             <folder>sql</folder>
             <folder>tables</folder>
             <folder>views</folder>
+			<!-- helpers files section -->
+			<folder>helpers</folder>			
+			
         </files>
 		<languages folder="admin/languages">
 			<language tag="en-GB">en-GB/en-GB.com_mkarta.ini</language>

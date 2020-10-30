@@ -22,8 +22,10 @@ class JFormFieldMkarta extends JFormFieldList
     {
         $db    = JFactory::getDBO();
         $query = $db->getQuery(true);
-        $query->select('id,greeting');
-        $query->from('#__helloworld');
+        $query->select('#__analyses.id as id,created_by, explanation,type_of_analysis,image,date,adder_id,published,catid, #__categories.title as category');
+        $query->from('#__analyses');
+		$query->leftJoin('#__categories on catid=#__categories.id');
+		// Retrieve only published items
         $db->setQuery((string) $query);
         $messages = $db->loadObjectList();
         $options  = array();
@@ -32,7 +34,10 @@ class JFormFieldMkarta extends JFormFieldList
         {
             foreach ($messages as $message)
             {
-                $options[] = JHtml::_('select.option', $message->id, $message->greeting);
+                //$options[] = JHtml::_('select.option', $message->id, $message->adder_id);
+				
+				$options[] = JHtml::_('select.option', $message->id, $message->adder_id .
+				                      ($message->catid ? ' (' . $message->category . ')' : ''));
             }
         }
 

@@ -10,6 +10,11 @@ $listDirn      = $this->escape($this->filter_order_Dir);
 ?>
 <form action="index.php?option=com_mkarta&view=analyses" method="post" id="adminForm" name="adminForm">
 
+	<div id="j-sidebar-container" class="span2">
+		<?php echo JHtmlSidebar::render(); ?>
+	</div>
+	<div id="j-main-container" class="span10">
+
     <div class="row-fluid">
         <div class="span6">
             <?php echo JText::_('COM_MKARTA_ANALYSES_FILTER'); ?>
@@ -82,7 +87,10 @@ $listDirn      = $this->escape($this->filter_order_Dir);
                         <?php echo $row->created_by; ?>
                     </td>
                     <td>
-                        <?php echo $row->explanation; ?>
+                        <?php echo $row->explanation; ?></br>
+								<div class="small">
+									<?php echo JText::_('JCATEGORY') . ': ' . $this->escape($row->category_title); ?>
+								</div>						
                     </td>
                     <td>
                         <?php echo $row->type_of_analysis; ?>
@@ -117,5 +125,5 @@ $listDirn      = $this->escape($this->filter_order_Dir);
     <input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>"/>
 
     <?php echo JHtml::_('form.token'); ?>
-
+</div>
 </form>

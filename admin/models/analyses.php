@@ -35,9 +35,13 @@ class MkartaModelAnalyses extends JModelList
         $query = $db->getQuery(true);
 
         // Create the base select statement.
-        $query->select('*')
-            ->from($db->quoteName('#__analyses'));
+        $query->select('a.id as id, a.created_by as created_by, a.explanation as explanation, a.type_of_analysis as type_of_analysis, a.image as image, a.date as date, a.adder_id as adder_id, a.published as published, a.catid as catid')
+            ->from($db->quoteName('#__analyses','a'));
 
+		// Join over the categories.
+		$query->select($db->quoteName('c.title', 'category_title'))
+			->join('LEFT', $db->quoteName('#__categories', 'c') . ' ON c.id = a.catid');
+			
         // Filter: like / search
         $search = $this->getState('filter.search');
 
@@ -54,11 +58,11 @@ class MkartaModelAnalyses extends JModelList
 
         if (is_numeric($published))
         {
-            $query->where('published = ' . (int) $published);
+			$query->where('a.published = ' . (int) $published);
         }
         elseif ($published === '')
         {
-            $query->where('(published IN (0, 1))');
+            $query->where('(a.published IN (0, 1))');
         }
 
         // Add the list ordering clause.
