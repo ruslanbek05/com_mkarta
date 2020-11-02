@@ -12,6 +12,11 @@ class MkartaModelAnalysis extends JModelItem {
         $input = JFactory::getApplication()->input;
         $id = $input->get('id',0,'INT');
         $this->setState('item.id',$id);
+
+        // Load the parameters.
+        $this->setState('params', JFactory::getApplication()->getParams());
+        parent::populateState();
+
     }
 
     public function getItem(){
@@ -22,11 +27,29 @@ class MkartaModelAnalysis extends JModelItem {
 
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
-        $query->select('`id`,`created_by`,`explanation`,`type_of_analysis`, `image`,`date`,`adder_id`');
-        $query->from('#__analyses');
-        $query->where('id='.(int)$id);
+        $query->select('a.id,a.created_by,a.explanation,a.type_of_analysis, a.image,a.date,a.adder_id,a.params, c.title as category');
+        $query->from('#__analyses as a');
+        $query->leftJoin('#__categories as c ON a.catid=c.id');
+        $query->where('a.id='.(int)$id);
         $db->setQuery($query);
-        $this->item = $db->loadObject();
+
+
+
+        if ($this->item = $db->loadObject())
+        {
+            // Load the JSON string
+            $params = new JRegistry;
+            $params->loadString($this->item->params, 'JSON');
+            $this->item->params = $params;
+
+            // Merge global params with item params
+            $params = clone $this->getState('params');
+            $params->merge($this->item->params);
+            $this->item->params = $params;
+        }
+
+
+
         return $this->item;
 
     }

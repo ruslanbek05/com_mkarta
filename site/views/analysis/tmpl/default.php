@@ -4,7 +4,10 @@
 defined('_JEXEC') or die('Restricted access');
 ?>
 <?php if (!empty($this->item)) :
-    $item = $this->item; ?>
+    $item = $this->item;
+
+//var_dump($item);
+?>
 
     <div>
         <h2>
@@ -25,6 +28,12 @@ defined('_JEXEC') or die('Restricted access');
 
         <p><?php echo $item->date; ?></p>
         <p><?php echo $item->adder_id; ?></p>
+
+
+        <h1><?php echo (($this->item->category and $this->item->params->get('show_category'))
+                    ? (' ('.$this->item->category.')') : ''); ?>
+        </h1>
+
 
     </div>
 

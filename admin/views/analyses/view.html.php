@@ -60,6 +60,7 @@ class MkartaViewAnalyses extends JViewLegacy
         JToolbarHelper::addNew('analysis_form.add');
         JToolbarHelper::editList('analysis_form.edit');
         JToolbarHelper::deleteList('', 'analyses.delete');
+        JToolBarHelper::preferences('com_mkarta');
     }
 
     protected function setDocument()
