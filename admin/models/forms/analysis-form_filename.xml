@@ -95,4 +95,25 @@
         </fieldset>
     </fields>
 
+    <fieldset
+            name="accesscontrol"
+            label="COM_MKARTA_FIELDSET_RULES"
+    >
+        <field
+                name="asset_id"
+                type="hidden"
+                filter="unset"
+        />
+        <field
+                name="rules"
+                type="rules"
+                label="COM_MKARTA_FIELD_RULES_LABEL"
+                filter="rules"
+                validate="rules"
+                class="inputbox"
+                component="com_mkarta"
+                section="analysis"
+        />
+    </fieldset>
+
 </form>

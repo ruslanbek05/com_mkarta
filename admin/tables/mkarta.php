@@ -23,6 +23,6 @@ class MkartaTableMkarta extends JTable
      */
     function __construct(&$db)
     {
-        parent::__construct('#__helloworld', 'id', $db);
+        parent::__construct('#__analyses', 'id', $db);
     }
 }

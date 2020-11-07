@@ -6,6 +6,7 @@ defined('_JEXEC') or die('Restricted access');
 class MkartaViewAnalysis_form extends JViewLegacy
 {
     protected $form = null;
+    protected $canDo;
 
     public function display($tpl = null)
     {
@@ -14,12 +15,15 @@ class MkartaViewAnalysis_form extends JViewLegacy
         $this->item = $this->get('Item');
         $this->script = $this->get('Script');
 
+        // What Access Permissions does this user have? What can (s)he do?
+        $this->canDo = JHelperContent::getActions('com_mkarta', 'analysis', $this->item->id);
+
+
+
         // Check for errors.
         if (count($errors = $this->get('Errors')))
         {
-            JError::raiseError(500, implode('<br />', $errors));
-
-            return false;
+            throw new Exception(implode("\n", $errors), 500);
         }
 
 
@@ -44,19 +48,53 @@ class MkartaViewAnalysis_form extends JViewLegacy
 
         if ($isNew)
         {
-            $title = JText::_('COM_MKARTA_MANAGER_ANALYSES_NEW');
+            //$title = JText::_('COM_MKARTA_MANAGER_ANALYSES_NEW');
+
+            if ($this->canDo->get('core.create'))
+            {
+                JToolBarHelper::apply('analysis_form.apply', 'JTOOLBAR_APPLY');
+                JToolBarHelper::save('analysis_form.save', 'JTOOLBAR_SAVE');
+                JToolBarHelper::custom('analysis_form.save2new', 'save-new.png', 'save-new_f2.png',
+                    'JTOOLBAR_SAVE_AND_NEW', false);
+            }
+            JToolBarHelper::cancel('analysis_form.cancel', 'JTOOLBAR_CANCEL');
+
         }
         else
         {
-            $title = JText::_('COM_MKARTA_MANAGER_ANALYSES_EDIT');
-        }
+            //$title = JText::_('COM_MKARTA_MANAGER_ANALYSES_EDIT');
 
+            if ($this->canDo->get('core.edit'))
+            {
+                // We can save the new record
+                JToolBarHelper::apply('analysis_form.apply', 'JTOOLBAR_APPLY');
+                JToolBarHelper::save('analysis_form.save', 'JTOOLBAR_SAVE');
+
+                // We can save this record, but check the create permission to see
+                // if we can return to make a new one.
+                if ($this->canDo->get('core.create'))
+                {
+                    JToolBarHelper::custom('analysis_form.save2new', 'save-new.png', 'save-new_f2.png',
+                        'JTOOLBAR_SAVE_AND_NEW', false);
+                }
+            }
+            if ($this->canDo->get('core.create'))
+            {
+                JToolBarHelper::custom('analysis_form.save2copy', 'save-copy.png', 'save-copy_f2.png',
+                    'JTOOLBAR_SAVE_AS_COPY', false);
+            }
+            JToolBarHelper::cancel('analysis_form.cancel', 'JTOOLBAR_CLOSE');
+
+
+        }
+/*
         JToolbarHelper::title($title, 'analysis_form');
         JToolbarHelper::save('analysis_form.save');
         JToolbarHelper::cancel(
             'analysis_form.cancel',
             $isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE'
         );
+*/
     }
 
     protected function setDocument()

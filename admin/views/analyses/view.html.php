@@ -22,12 +22,15 @@ class MkartaViewAnalyses extends JViewLegacy
         $this->filterForm    	= $this->get('FilterForm');
         $this->activeFilters 	= $this->get('ActiveFilters');
 
+        // What Access Permissions does this user have? What can (s)he do?
+        $this->canDo = JHelperContent::getActions('com_mkarta');
+
+        //var_dump($this->canDo);
+
         // Check for errors.
         if (count($errors = $this->get('Errors')))
         {
-            JError::raiseError(500, implode('<br />', $errors));
-
-            return false;
+            throw new Exception(implode("\n", $errors), 500);
         }
 		
 		// Set the submenu
@@ -57,10 +60,26 @@ class MkartaViewAnalyses extends JViewLegacy
 
 
         JToolbarHelper::title(JText::_('COM_MKARTA_MANAGER_ANALYSES'));
-        JToolbarHelper::addNew('analysis_form.add');
-        JToolbarHelper::editList('analysis_form.edit');
-        JToolbarHelper::deleteList('', 'analyses.delete');
-        JToolBarHelper::preferences('com_mkarta');
+
+        if ($this->canDo->get('core.create')) {
+            JToolbarHelper::addNew('analysis_form.add');
+        }
+
+        if ($this->canDo->get('core.edit')) {
+            JToolbarHelper::editList('analysis_form.edit');
+        }
+
+        if ($this->canDo->get('core.delete'))
+        {
+            JToolBarHelper::deleteList('', 'analyses.delete', 'JTOOLBAR_DELETE');
+        }
+
+        // Options button.
+        if (JFactory::getUser()->authorise('core.admin', 'com_mkarta'))
+        {
+            JToolBarHelper::divider();
+            JToolBarHelper::preferences('com_mkarta');
+        }
     }
 
     protected function setDocument()

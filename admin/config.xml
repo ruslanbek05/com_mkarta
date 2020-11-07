@@ -16,4 +16,56 @@
             <option value="1">JSHOW</option>
         </field>
     </fieldset>
+
+    <fieldset
+            name="permissions"
+            label="JCONFIG_PERMISSIONS_LABEL"
+            description="JCONFIG_PERMISSIONS_DESC"
+    >
+        <field
+                name="rules"
+                type="rules"
+                label="JCONFIG_PERMISSIONS_LABEL"
+                class="inputbox"
+                validate="rules"
+                filter="rules"
+                component="com_mkarta"
+                section="component"
+        />
+    </fieldset>
+
+    <fieldset
+            name="category"
+            label="COM_MKARTA_CATEGORY_ACL_LABEL"
+            description="COM_MKARTA_CATEGORY_ACL_DESC"
+    >
+        <field
+                name="rules"
+                type="rules"
+                label="COM_MKARTA_CATEGORY_ACL_LABEL"
+                class="inputbox"
+                validate="rules"
+                filter="rules"
+                component="com_mkarta"
+                section="category"
+        />
+    </fieldset>
+
+    <fieldset
+            name="analysis"
+            label="COM_MKARTA_ANALYSIS_ACL_LABEL"
+            description="COM_MKARTA_ANALYSIS_ACL_DESC"
+    >
+        <field
+                name="rules"
+                type="rules"
+                label="COM_MKARTA_CATEGORY_ACL_LABEL"
+                class="inputbox"
+                validate="rules"
+                filter="rules"
+                component="com_mkarta"
+                section="analysis"
+        />
+    </fieldset>
+
 </config>

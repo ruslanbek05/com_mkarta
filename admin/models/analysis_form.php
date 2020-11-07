@@ -82,4 +82,16 @@ class MkartaModelAnalysis_form extends JModelAdmin
     {
         return 'administrator/components/com_mkarta/models/forms/analysis_form.js';
     }
+
+    /**
+     * Method to check if it's OK to delete a message. Overrides JModelAdmin::canDelete
+     */
+    protected function canDelete($record)
+    {
+        if( !empty( $record->id ) )
+        {
+            return JFactory::getUser()->authorise( "core.delete", "com_mkarta.analysis." . $record->id );
+        }
+    }
+
 }
