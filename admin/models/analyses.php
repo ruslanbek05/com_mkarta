@@ -20,7 +20,9 @@ class MkartaModelAnalyses extends JModelList
             $config['filter_fields'] = array(
                 'id',
                 'type_of_analysis',
-                'published'
+                'published',
+                'author',
+                'created'
             );
         }
 
@@ -35,12 +37,16 @@ class MkartaModelAnalyses extends JModelList
         $query = $db->getQuery(true);
 
         // Create the base select statement.
-        $query->select('a.id as id, a.created_by as created_by, a.explanation as explanation, a.type_of_analysis as type_of_analysis, a.image as image, a.date as date, a.adder_id as adder_id, a.published as published, a.catid as catid')
+        $query->select('a.id as id, a.created_by as created_by, a.explanation as explanation, a.type_of_analysis as type_of_analysis, a.image as image, a.date as date, a.adder_id as adder_id, a.published as published, a.catid as catid, a.created as created')
             ->from($db->quoteName('#__analyses','a'));
 
 		// Join over the categories.
 		$query->select($db->quoteName('c.title', 'category_title'))
 			->join('LEFT', $db->quoteName('#__categories', 'c') . ' ON c.id = a.catid');
+
+        // Join with users table to get the username of the author
+        $query->select($db->quoteName('u.username', 'author'))
+            ->join('LEFT', $db->quoteName('#__users', 'u') . ' ON u.id = a.created_by');
 			
         // Filter: like / search
         $search = $this->getState('filter.search');
@@ -65,9 +71,14 @@ class MkartaModelAnalyses extends JModelList
             $query->where('(a.published IN (0, 1))');
         }
 
+
+
         // Add the list ordering clause.
         $orderCol	= $this->state->get('list.ordering', 'id');
         $orderDirn 	= $this->state->get('list.direction', 'desc');
+
+        //var_dump($this->state);
+        //var_dump($orderCol);
 
         $query->order($db->escape($orderCol) . ' ' . $db->escape($orderDirn));
 

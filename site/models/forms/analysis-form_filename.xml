@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form
-        addrulepath="/administrator/components/com_helloworld/models/rules"
+        addrulepath="/administrator/components/com_mkarta/models/rules"
 >
     <fieldset
             name="analysis_fieldset_name"
+            addrulepath="/administrator/components/com_mkarta/models/rules"
             label="COM_MKARTA_ANALYSIS_FORM_DETAILS"
     >
         <field
@@ -38,25 +39,17 @@
                 description="COM_MKARTA_ANALYSIS_TYPE_OF_ANALYSIS_FIELD_DESC"
                 hint="COM_MKARTA_ANALYSIS_TYPE_OF_ANALYSIS_FIELD_HINT"
                 default=""
+                class="inputbox validate-type_of_analysis"
+                validate="typeofanalysis"
+                required="true"
+                message="Your custom validation messsage goes here"
         />
 
-        <field
-                name="image"
-                type="text"
-                label="COM_MKARTA_ANALYSIS_IMAGE_FIELD_LABEL"
-                description="COM_MKARTA_ANALYSIS_IMAGE_FIELD_DESC"
-                hint="COM_MKARTA_ANALYSIS_IMAGE_FIELD_HINT"
-                default=""
-        />
+        <field name="image" type="file" label="COM_MKARTA_ANALYSIS_IMAGE_FIELD_LABEL" description="COM_MKARTA_ANALYSIS_IMAGE_FIELD_DESC" size="10" accept="image/*" />
 
-        <field
-                name="date"
-                type="text"
-                label="COM_MKARTA_ANALYSIS_DATE_FIELD_LABEL"
-                description="COM_MKARTA_ANALYSIS_DATE_FIELD_DESC"
-                hint="COM_MKARTA_ANALYSIS_IMAGE_DATE_FIELD_HINT"
-                default=""
-        />
+        <field name="date" type="calendar" default="NOW" label="COM_MKARTA_ANALYSIS_DATE_FIELD_LABEL" description="COM_MKARTA_ANALYSIS_DATE_FIELD_DESC"
+               class="input-small" required="true" filter="user_utc"
+               showtime="false" todaybutton="true" filltable="false" translateformat="true"/>
 
         <field
                 name="adder_id"
@@ -67,6 +60,68 @@
                 default=""
         />
 
+        <field
+                name="catid"
+                type="category"
+                extension="com_mkarta"
+                class="inputbox"
+                default=""
+                label="COM_MKARTA_ANALYSIS_FIELD_CATID_LABEL"
+                description="COM_MKARTA_ANALYSIS_FIELD_CATID_DESC"
+                required="true"
+        >
+            <option value="0">JOPTION_SELECT_CATEGORY</option>
+        </field>
 
+        <field
+                name="captcha"
+                type="captcha"
+                label="COM_MKARTA_HELLOWORLD_FIELD_CAPTCHA_LABEL"
+                description="COM_MKARTA_HELLOWORLD_FIELD_CAPTCHA_DESC"
+                validate="captcha"
+        >
+        </field>
+
+
+    </fieldset>
+
+    <fields name="params">
+        <fieldset
+                name="params"
+                label="JGLOBAL_FIELDSET_DISPLAY_OPTIONS"
+        >
+            <field
+                    name="show_category"
+                    type="list"
+                    label="COM_MKARTA_ANALYSIS_FIELD_SHOW_CATEGORY_LABEL"
+                    description="COM_MKARTA_ANALYSIS_FIELD_SHOW_CATEGORY_DESC"
+                    default=""
+            >
+                <option value="">JGLOBAL_USE_GLOBAL</option>
+                <option value="0">JHIDE</option>
+                <option value="1">JSHOW</option>
+            </field>
+        </fieldset>
+    </fields>
+
+    <fieldset
+            name="accesscontrol"
+            label="COM_MKARTA_FIELDSET_RULES"
+    >
+        <field
+                name="asset_id"
+                type="hidden"
+                filter="unset"
+        />
+        <field
+                name="rules"
+                type="rules"
+                label="COM_MKARTA_FIELD_RULES_LABEL"
+                filter="rules"
+                validate="rules"
+                class="inputbox"
+                component="com_mkarta"
+                section="analysis"
+        />
     </fieldset>
 </form>

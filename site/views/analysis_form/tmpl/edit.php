@@ -4,7 +4,7 @@ defined('_JEXEC') or die('Restricted access');
 
 JHtml::_('behavior.formvalidator');
 
-var_dump($this->analysis->explanation);die;
+//var_dump($this->analysis->explanation);die;
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_mkarta&task=analysis_form.save'); ?>"

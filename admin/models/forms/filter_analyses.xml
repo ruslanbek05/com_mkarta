@@ -19,6 +19,28 @@
         </field>
     </fields>
     <fields name="list">
+
+        <field
+                name="fullordering"
+                type="list"
+                label="COM_MKARTA_LIST_FULL_ORDERING"
+                description="COM_MKARTA_LIST_FULL_ORDERING_DESC"
+                onchange="this.form.submit();"
+                default="id DESC"
+        >
+            <option value="">JGLOBAL_SORT_BY</option>
+            <option value="type_of_analysis ASC">COM_MKARTA_ORDERING_ASC</option>
+            <option value="type_of_analysis DESC">COM_MKARTA_ORDERING_DESC</option>
+            <option value="id ASC">JGRID_HEADING_ID_ASC</option>
+            <option value="id DESC">JGRID_HEADING_ID_DESC</option>
+            <option value="published ASC">COM_MKARTA_PUBLISHED_ASC</option>
+            <option value="published DESC">COM_MKARTA_PUBLISHED_DESC</option>
+            <option value="author ASC">COM_MKARTA_AUTHOR_ASC</option>
+            <option value="author DESC">COM_MKARTA_AUTHOR_DESC</option>
+            <option value="created ASC">COM_MKARTA_CREATED_ASC</option>
+            <option value="created DESC">COM_MKARTA_CREATED_DESC</option>
+        </field>
+
         <field
                 name="limit"
                 type="limitbox"

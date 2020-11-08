@@ -1,0 +1,1 @@
+ALTER TABLE`#__helloworld` ADD COLUMN `created` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00' AFTER `asset_id`;
