@@ -8,7 +8,7 @@ JHtml::_('behavior.formvalidator');
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_mkarta&task=analysis_form.save'); ?>"
-      method="post" name="adminForm" id="adminForm" class="form-validate">
+      method="post" name="adminForm" id="adminForm" class="form-validate" enctype="multipart/form-data">
 
     <div class="form-horizontal">
         <fieldset class="adminform">

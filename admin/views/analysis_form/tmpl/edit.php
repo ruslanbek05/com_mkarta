@@ -58,7 +58,21 @@ JFactory::getDocument()->addScriptDeclaration('
             </div>
         </fieldset>
         <?php echo JHtml::_('bootstrap.endTab'); ?>
+
+        <?php echo JHtml::_('bootstrap.addTab', 'myTab', 'image', JText::_('COM_MKARTA_TAB_IMAGE')); ?>
+        <fieldset class="adminform">
+            <legend><?php echo JText::_('COM_MKARTA_LEGEND_IMAGE') ?></legend>
+            <div class="row-fluid">
+                <div class="span6">
+                    <?php echo $this->form->renderFieldset('image-info');  ?>
+                </div>
+            </div>
+        </fieldset>
+        <?php echo JHtml::_('bootstrap.endTab'); ?>
+
         <?php echo JHtml::_('bootstrap.endTabSet'); ?>
+
+
 
 
     </div>

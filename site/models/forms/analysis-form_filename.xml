@@ -73,11 +73,40 @@
             <option value="0">JOPTION_SELECT_CATEGORY</option>
         </field>
 
+        <fields name="imageinfo" label="COM_MKARTA_ANALYSIS_IMAGE_LABEL">
+            <field
+                    name="image"
+                    type="file"
+                    label="COM_MKARTA_ANALYSIS_PICTURE_LABEL"
+                    description="COM_MKARTA_ANALYSIS_PICTURE_DESC"
+                    accept="image/*"
+            >
+            </field>
+            <field
+                    name="caption"
+                    type="text"
+                    label="COM_MKARTA_ANALYSIS_CAPTION_LABEL"
+                    description="COM_MKARTA_ANALYSIS_CAPTION_DESC"
+                    size="40"
+                    class="inputbox"
+            >
+            </field>
+            <field
+                    name="alt"
+                    type="text"
+                    label="COM_MKARTA_ANALYSIS_ALTTEXT_LABEL"
+                    description="COM_MKARTA_ANALYSIS_ALTTEXT_DESC"
+                    size="40"
+                    class="inputbox"
+            >
+            </field>
+        </fields>
+
         <field
                 name="captcha"
                 type="captcha"
-                label="COM_MKARTA_HELLOWORLD_FIELD_CAPTCHA_LABEL"
-                description="COM_MKARTA_HELLOWORLD_FIELD_CAPTCHA_DESC"
+                label="COM_MKARTA_ANALYSIS_FIELD_CAPTCHA_LABEL"
+                description="COM_MKARTA_ANALYSIS_FIELD_CAPTCHA_DESC"
                 validate="captcha"
         >
         </field>

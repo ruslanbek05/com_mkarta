@@ -2,6 +2,8 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted Access');
 
+use Joomla\Registry\Registry;
+
 JHtml::_('formbehavior.chosen', 'select');
 
 //$listOrder     = $this->escape($this->filter_order);
@@ -89,6 +91,8 @@ $listDirn = $this->escape($this->state->get('list.direction'));
             <?php if (!empty($this->items)) : ?>
                 <?php foreach ($this->items as $i => $row) :
                     $link = JRoute::_('index.php?option=com_mkarta&task=analysis_form.edit&id=' . $row->id);
+                    $row->image = new Registry;
+                    $row->image->loadString($row->imageInfo);
                     ?>
 
                     <tr>
@@ -113,8 +117,13 @@ $listDirn = $this->escape($this->state->get('list.direction'));
                         <td>
                             <?php echo $row->type_of_analysis; ?>
                         </td>
-                        <td>
-                            <?php echo $row->image; ?>
+                        <td align="center">
+                            <?php
+                            //var_dump($row->image);
+                            $caption = $row->image->get('caption') ? : '' ;
+                            $src = JURI::root() . ($row->image->get('image') ? : '' );
+?>
+                            <img width="100px" height="100px" class="hasTooltip" style="display: inline-block" data-html="true" data-toggle="tooltip" data-placement="right" src="<?php echo $src ?>" >
                         </td>
                         <td>
                             <?php echo $row->date; ?>

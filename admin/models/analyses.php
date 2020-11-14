@@ -37,7 +37,7 @@ class MkartaModelAnalyses extends JModelList
         $query = $db->getQuery(true);
 
         // Create the base select statement.
-        $query->select('a.id as id, a.created_by as created_by, a.explanation as explanation, a.type_of_analysis as type_of_analysis, a.image as image, a.date as date, a.adder_id as adder_id, a.published as published, a.catid as catid, a.created as created')
+        $query->select('a.id as id, a.created_by as created_by, a.explanation as explanation, a.type_of_analysis as type_of_analysis, a.image as image, a.date as date, a.adder_id as adder_id, a.published as published, a.catid as catid, a.created as created, a.image as imageInfo')
             ->from($db->quoteName('#__analyses','a'));
 
 		// Join over the categories.

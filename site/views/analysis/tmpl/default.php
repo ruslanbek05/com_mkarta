@@ -34,6 +34,18 @@ defined('_JEXEC') or die('Restricted access');
                     ? (' ('.$this->item->category.')') : ''); ?>
         </h1>
 
+        <?php
+        $src = $this->item->imageDetails['image'];
+        if ($src) {
+            $html = '<figure>
+            <img src="%s" alt="%s" >
+            <figcaption>%s</figcaption>
+        </figure>';
+            $alt = $this->item->imageDetails['alt'];
+            $caption = $this->item->imageDetails['caption'];
+            echo sprintf($html, $src, $alt, $caption);
+        }
+        ?>
 
     </div>
 

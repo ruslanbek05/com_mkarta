@@ -76,6 +76,30 @@
 
     </fieldset>
 
+    <fields name="imageinfo">
+        <fieldset
+                name="image-info"
+                label="COM_MKARTAD_IMAGE_FIELDS"
+        >
+            <field
+                    name="image"
+                    type="media"
+                    preview="tooltip"
+                    label="COM_MKARTAD_IMAGE_FIELD_IMAGE_LABEL"
+                    description="COM_MKARTAD_IMAGE_FIELD_IMAGE_DESC" />
+            <field name="alt"
+                   type="text"
+                   label="COM_MKARTAD_IMAGE_FIELD_ALT_LABEL"
+                   description="COM_MKARTAD_IMAGE_FIELD_ALT_DESC"
+                   size="30"/>
+            <field name="caption"
+                   type="text"
+                   label="COM_MKARTAD_IMAGE_FIELD_CAPTION_LABEL"
+                   description="COM_MKARTAD_IMAGE_FIELD_CAPTION_DESC"
+                   size="30"/>
+        </fieldset>
+    </fields>
+
     <fields name="params">
         <fieldset
                 name="params"

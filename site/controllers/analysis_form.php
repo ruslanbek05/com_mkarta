@@ -84,6 +84,79 @@ class MkartaControllerAnalysis_form extends JControllerForm {
             return false;
         }
 
+
+
+        // Handle the uploaded file - get it from the PHP $_FILES structure
+        $fileinfo = $this->input->files->get('jform', array(), 'array');
+        $file = $fileinfo['imageinfo']['image'];
+        /* The $file variable above should contain an array of 5 elements as follows:
+         *   name: the name of the file (on the system from which it was uploaded), without directory info
+         *   type: should be something like image/jpeg
+         *   tmp_name: pathname of the file where PHP has stored the uploaded data
+         *   error: 0 if no error
+         *   size: size of the file in bytes
+         */
+
+        // Check if any files have been uploaded
+        if ($file['error'] == 4)   // no file uploaded (see PHP file upload error conditions)
+        {
+            $validData['imageinfo'] = null;
+        }
+        else
+        {
+            if ($file['error'] > 0)
+            {
+                $app->enqueueMessage(JText::sprintf('COM_MKARTA_ERROR_FILEUPLOAD', $file['error']), 'warning');
+                return false;
+            }
+
+            // make sure filename is clean
+            jimport('joomla.filesystem.file');
+            $file['name'] = JFile::makeSafe($file['name']);
+            if (!isset($file['name']))
+            {
+                // No filename (after the name was cleaned by JFile::makeSafe)
+                $app->enqueueMessage(JText::_('COM_MKARTA_ERROR_BADFILENAME'), 'warning');
+                return false;
+            }
+
+            // files from Microsoft Windows can have spaces in the filenames
+            $file['name'] = str_replace(' ', '-', $file['name']);
+
+            // do checks against Media configuration parameters
+            $mediaHelper = new JHelperMedia;
+            if (!$mediaHelper->canUpload($file))
+            {
+                // The file can't be uploaded - the helper class will have enqueued the error message
+                return false;
+            }
+
+            // prepare the uploaded file's destination pathnames
+            $mediaparams = JComponentHelper::getParams('com_media');
+            $relativePathname = JPath::clean($mediaparams->get($path, 'images') . '/' . $file['name']);
+            $absolutePathname = JPATH_ROOT . '/' . $relativePathname;
+            if (JFile::exists($absolutePathname))
+            {
+                // A file with this name already exists
+                $app->enqueueMessage(JText::_('COM_MKARTA_ERROR_FILE_EXISTS'), 'warning');
+                return false;
+            }
+
+            // check file contents are clean, and copy it to destination pathname
+            if (!JFile::upload($file['tmp_name'], $absolutePathname))
+            {
+                // Error in upload
+                $app->enqueueMessage(JText::_('COM_MKARTA_ERROR_UNABLE_TO_UPLOAD_FILE'));
+                return false;
+            }
+
+            // Upload succeeded, so update the relative filename for storing in database
+            $validData['imageinfo']['image'] = $relativePathname;
+        }
+
+
+
+
         // add the 'created by' and 'created' date fields
         $validData['created_by'] = JFactory::getUser()->get('id', 0);
         $validData['created'] = date('Y-m-d h:i:s');

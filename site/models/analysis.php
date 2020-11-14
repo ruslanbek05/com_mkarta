@@ -27,7 +27,7 @@ class MkartaModelAnalysis extends JModelItem {
 
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
-        $query->select('a.id,a.created_by,a.explanation,a.type_of_analysis, a.image,a.date,a.adder_id,a.params, c.title as category');
+        $query->select('a.id,a.created_by,a.explanation,a.type_of_analysis, a.image,a.date,a.adder_id,a.params,a.image as image, c.title as category');
         $query->from('#__analyses as a');
         $query->leftJoin('#__categories as c ON a.catid=c.id');
         $query->where('a.id='.(int)$id);
@@ -46,6 +46,12 @@ class MkartaModelAnalysis extends JModelItem {
             $params = clone $this->getState('params');
             $params->merge($this->item->params);
             $this->item->params = $params;
+
+            // Convert the JSON-encoded image info into an array
+            $image = new JRegistry;
+            $image->loadString($this->item->image, 'JSON');
+            $this->item->imageDetails = $image;
+
         }
 
 
